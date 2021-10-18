@@ -13,18 +13,18 @@ const employeePrompt = () => {
       type: 'list',
       message: "What team member do you want to add?",
       name: 'employee',
-      choices: ['manager', 'engineer', 'intern'],
+      choices: ['Manager', 'Engineer', 'Intern'],
     }
   ])
   .then((data) => {
     switch(data.employee) {
-      case 'manager':
+      case 'Manager':
         managerPrompt();
         break;
-      case 'engineer':
+      case 'Engineer':
         engineerPrompt();
         break;
-      case 'intern':
+      case 'Intern':
         internPrompt();
         break;
       default:
@@ -86,13 +86,13 @@ const engineerPrompt = () => {
     },
     {
       type: 'input',
-      message: 'Github Link: ',
+      message: 'Github: ',
       name: 'github',
     },
   ])
   .then((data) => {
     console.log(data);
-    const newEngineer = new Manager(data.name, data.id, data.email, data.github);
+    const newEngineer = new Engineer(data.name, data.id, data.email, data.github);
     team.push(newEngineer);
     console.log(team);
     addPrompt();
@@ -159,7 +159,59 @@ const addPrompt = () => {
 
 const generateHTML = () => {
 
-}
+  let cards = ``;
+  
+  team.forEach(employee => {
+    cards += employee.setCard();
+  })
 
+  const html = 
+
+`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Team Profile</title>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 margin-auto">
+                    <h1>Team Profile</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="d-flex">
+        <div class="main-div container">
+            <div class="row" id="card-container">
+              ${cards}
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
+`
+  fs.writeFile('index.html', html, (error => {
+    error ? console.log(error) : console.log("HTML Created");
+  }))
+}
 
 employeePrompt();
