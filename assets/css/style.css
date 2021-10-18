@@ -1,6 +1,6 @@
 .header {
     transform: translate3d(0px, 0px, 0px);
-    height: 40vh;
+    height: 30vh;
     overflow: hidden;
     position: relative;
     background-position: 50%;
@@ -48,12 +48,16 @@ h1 {
     text-align: center;
 }
 
-.row {
+#card-container {
     justify-content: center;
+    margin-top: 20px;
 }
+
 .card {
     margin: 20px;
+    filter: drop-shadow(3px 3px 3px green);
 }
+
 .card .card-header {
     background-color: lightgreen;
 }

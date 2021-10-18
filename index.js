@@ -186,7 +186,7 @@ const generateHTML = () => {
         <div class="container">
             <div class="row">
                 <div class="col-md-8 margin-auto">
-                    <h1>Team Profile</h1>
+                    <h1>My Team</h1>
                 </div>
             </div>
         </div>
