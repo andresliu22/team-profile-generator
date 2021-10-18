@@ -1,11 +1,26 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-inquirer
+const employeePrompt = () => {
+  inquirer.prompt([
+    {
+      type: 'list',
+      message: "What team member do you want to add?",
+      name: 'employeeChosen',
+      choices: ['manager', 'engineer', 'intern'],
+    }
+  ])
+  .then((data) => {
+    console.log(data);
+  });
+}
+
+const managerPrompt = () => {
+  inquirer
   .prompt([
     {
       type: 'input',
-      message: 'Team Manager Name: ',
+      message: 'Team Manager\'s Name: ',
       name: 'name',
     },
     {
@@ -27,3 +42,6 @@ inquirer
   .then((data) => {
     console.log(data);
   });
+}
+
+employeePrompt();

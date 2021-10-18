@@ -1,0 +1,26 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "inquirer": "^8.2.0",
+    "jest": "^27.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andresliu22/team-profile-generator.git"
+  },
+  "author": "Andres Liu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andresliu22/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/andresliu22/team-profile-generator#readme"
+}
