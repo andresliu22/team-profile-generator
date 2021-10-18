@@ -10,3 +10,5 @@ class Engineer extends Employee {
         return 'Engineer';
     }
 }
+
+module.exports = Engineer;
