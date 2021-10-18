@@ -148,6 +148,7 @@ const addPrompt = () => {
         break;
       case 'No':
         // Create HTML
+        generateHTML();
         console.log("Create HTML");
         break;
       default:
@@ -155,4 +156,10 @@ const addPrompt = () => {
     }
   });
 }
+
+const generateHTML = () => {
+
+}
+
+
 employeePrompt();
