@@ -217,6 +217,7 @@ const generateHTML = () => {
 </body>
 </html>
 `
+  
   // Generate HTML File
   fs.writeFile('./dist/index.html', html, (error => {
     error ? console.log(error) : console.log("HTML Created");
