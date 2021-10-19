@@ -2,15 +2,19 @@
 
 ## Description
 
-Generate your Team Profile Website by using only your terminal!. Answer all the given questions and your HTML File will be generated without even coding!
+Generate your Team Profile Website by using only your terminal! Answer all the given questions and your HTML File will be generated without even coding!
 
 ## Prompt Picture
 
-![Site](./dist/images/prompt-img.PNG)
+![Site](./dist/images/site-img.PNG)
+
+## Prompt Picture
+
+![Prompt](./dist/images/prompt-img.PNG)
 
 ## Test Picture
 
-![Site](./dist/images/test-img.PNG)
+![Test](./dist/images/test-img.PNG)
 
 ## Getting Started
 
