@@ -1,11 +1,14 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const Employee = require('./models/Employee');
-const Manager = require('./models/Manager');
-const Engineer = require('./models/Engineer');
-const Intern = require('./models/Intern');
+const Employee = require('./lib/Employee');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
-const team = [];
+const managers = [];
+const engineers = [];
+const interns = [];
+
 
 const employeePrompt = () => {
   inquirer.prompt([
@@ -60,8 +63,7 @@ const managerPrompt = () => {
   .then((data) => {
     console.log(data);
     const newManager = new Manager(data.name, data.id, data.email, data.officeNumber);
-    team.push(newManager);
-    console.log(team);
+    managers.push(newManager);
     addPrompt();
   });
 }
@@ -93,8 +95,7 @@ const engineerPrompt = () => {
   .then((data) => {
     console.log(data);
     const newEngineer = new Engineer(data.name, data.id, data.email, data.github);
-    team.push(newEngineer);
-    console.log(team);
+    engineers.push(newEngineer);
     addPrompt();
   });
 }
@@ -125,8 +126,7 @@ const internPrompt = () => {
   .then((data) => {
     console.log(data);
     const newIntern = new Intern(data.name, data.id, data.email, data.school);
-    team.push(newIntern);
-    console.log(team);
+    interns.push(newIntern);
     addPrompt();
   });
 }
@@ -161,9 +161,12 @@ const generateHTML = () => {
 
   let cards = ``;
   
-  team.forEach(employee => {
-    cards += employee.setCard();
-  })
+  managers.sort((a, b) => a.id - b.id);
+  engineers.sort((a, b) => a.id - b.id);
+  interns.sort((a, b) => a.id - b.id);
+
+  let team = [...managers, ...engineers, ...interns];
+  team.forEach(employee => cards += employee.setCard());
 
   const html = 
 
@@ -178,7 +181,7 @@ const generateHTML = () => {
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Team Profile</title>
 </head>
 <body>
@@ -205,11 +208,10 @@ const generateHTML = () => {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-    <script src="./assets/js/script.js"></script>
 </body>
 </html>
 `
-  fs.writeFile('index.html', html, (error => {
+  fs.writeFile('./dist/index.html', html, (error => {
     error ? console.log(error) : console.log("HTML Created");
   }))
 }
