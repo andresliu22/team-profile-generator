@@ -4,7 +4,7 @@
 
 Generate your Team Profile Website by using only your terminal! Answer all the given questions and your HTML File will be generated without even coding!
 
-## Prompt Picture
+## Site Picture
 
 ![Site](./dist/images/site-img.PNG)
 
