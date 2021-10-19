@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -8,7 +7,6 @@ const Intern = require('./lib/Intern');
 const managers = [];
 const engineers = [];
 const interns = [];
-
 
 const employeePrompt = () => {
   inquirer.prompt([
@@ -61,7 +59,6 @@ const managerPrompt = () => {
     },
   ])
   .then((data) => {
-    console.log(data);
     const newManager = new Manager(data.name, data.id, data.email, data.officeNumber);
     managers.push(newManager);
     addPrompt();
@@ -93,7 +90,6 @@ const engineerPrompt = () => {
     },
   ])
   .then((data) => {
-    console.log(data);
     const newEngineer = new Engineer(data.name, data.id, data.email, data.github);
     engineers.push(newEngineer);
     addPrompt();
@@ -124,7 +120,6 @@ const internPrompt = () => {
     },
   ])
   .then((data) => {
-    console.log(data);
     const newIntern = new Intern(data.name, data.id, data.email, data.school);
     interns.push(newIntern);
     addPrompt();
@@ -149,7 +144,6 @@ const addPrompt = () => {
       case 'No':
         // Create HTML
         generateHTML();
-        console.log("Create HTML");
         break;
       default:
         console.log("Error, option not found");
