@@ -1,13 +1,16 @@
+// Import libraries
 const inquirer = require('inquirer');
 const fs = require('fs');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+// Initialize empty arrays to store employees
 const managers = [];
 const engineers = [];
 const interns = [];
 
+// Employee prompt to answer what team member would be added
 const employeePrompt = () => {
   inquirer.prompt([
     {
@@ -34,6 +37,7 @@ const employeePrompt = () => {
   });
 }
 
+// Manager Prompt to answer about the manager and push it to the corresponding array
 const managerPrompt = () => {
   inquirer
   .prompt([
@@ -65,6 +69,7 @@ const managerPrompt = () => {
   });
 }
 
+// Engineer Prompt to answer about the engineer and push it to the corresponding array
 const engineerPrompt = () => {
   inquirer
   .prompt([
@@ -95,6 +100,8 @@ const engineerPrompt = () => {
     addPrompt();
   });
 }
+
+// Intern Prompt to answer about the intern and push it to the corresponding array
 const internPrompt = () => {
   inquirer
   .prompt([
@@ -126,6 +133,7 @@ const internPrompt = () => {
   });
 }
 
+// Add Prompt to answer if user wants to continue adding team members
 const addPrompt = () => {
   inquirer
   .prompt([
@@ -151,17 +159,21 @@ const addPrompt = () => {
   });
 }
 
+// Generate HTML with given team members
 const generateHTML = () => {
 
   let cards = ``;
   
+  // Sort team members by id
   managers.sort((a, b) => a.id - b.id);
   engineers.sort((a, b) => a.id - b.id);
   interns.sort((a, b) => a.id - b.id);
 
+  // Set all team members into an array called team
   let team = [...managers, ...engineers, ...interns];
   team.forEach(employee => cards += employee.setCard());
 
+  // Set HTML File with team members
   const html = 
 
 `
@@ -205,9 +217,11 @@ const generateHTML = () => {
 </body>
 </html>
 `
+  // Generate HTML File
   fs.writeFile('./dist/index.html', html, (error => {
     error ? console.log(error) : console.log("HTML Created");
   }))
 }
 
+// Initial prompt called given to the user
 employeePrompt();
